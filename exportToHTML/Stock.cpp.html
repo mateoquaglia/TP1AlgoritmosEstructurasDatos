@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>Stock.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bbb529;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+.s4 { color: #6897bb;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Stock.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">#include </span><span class="s2">&quot;Stock.h&quot;</span>
+<span class="s0">#include </span><span class="s2">&lt;vector&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;stack&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;queue&gt;</span>
+<span class="s3">using namespace </span><span class="s1">std</span><span class="s3">;</span>
+<span class="s3">void </span><span class="s1">Stock::</span>
+
+<span class="s3">void </span><span class="s1">Stock::actualizar_stock(string id</span><span class="s3">, </span><span class="s1">string tipo_fruta</span><span class="s3">, int </span><span class="s1">cantidad_fruta)</span>
+<span class="s1">{</span>
+    <span class="s3">bool </span><span class="s1">encontrado = </span><span class="s3">false;</span>
+    <span class="s3">int </span><span class="s1">index = </span><span class="s4">0</span><span class="s3">;</span>
+    <span class="s3">while </span><span class="s1">(!encontrado &amp;&amp; index &lt; depo.size())</span>
+    <span class="s1">{</span>
+        <span class="s3">if </span><span class="s1">(depo[index].empty() || depo[index].top().get_tipo_fruta() == tipo_fruta &amp;&amp; depo[index].top().get_cantidad_fruta() + cantidad_fruta &lt;= </span><span class="s4">20</span><span class="s1">)</span>
+        <span class="s1">{</span>
+            <span class="s1">encontrado = </span><span class="s3">true;</span>
+        <span class="s1">}</span>
+        <span class="s3">else</span>
+        <span class="s1">{</span>
+            <span class="s1">index++</span><span class="s3">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s3">if </span><span class="s1">(encontrado)</span>
+    <span class="s1">{</span>
+        <span class="s3">if </span><span class="s1">(depo[index].empty() || depo[index].top().get_tipo_fruta() != tipo_fruta)</span>
+        <span class="s1">{</span>
+            <span class="s1">depo[index].push(Cajon(id</span><span class="s3">, </span><span class="s1">tipo_fruta</span><span class="s3">, </span><span class="s1">cantidad_fruta))</span><span class="s3">;</span>
+        <span class="s1">}</span>
+        <span class="s3">else</span>
+        <span class="s1">{</span>
+            <span class="s1">depo[index].top().set_cantidad_fruta(depo[index].top().get_cantidad_fruta() + cantidad_fruta)</span><span class="s3">;</span>
+
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+<span class="s3">void </span><span class="s1">Stock::registrar_pedido_mayorista(string nombre_cliente</span><span class="s3">, </span><span class="s1">string tipo_fruta</span><span class="s3">, int </span><span class="s1">cantidad_fruta)</span>
+<span class="s1">{</span>
+    <span class="s1">Cajon cajon(</span><span class="s2">&quot;&quot;</span><span class="s3">, </span><span class="s1">tipo_fruta</span><span class="s3">, </span><span class="s1">cantidad_fruta)</span><span class="s3">;</span>
+    <span class="s1">pedidos_mayorista.push(make_pair(nombre_cliente</span><span class="s3">, </span><span class="s1">cajon))</span><span class="s3">;</span>
+<span class="s1">}</span>
+<span class="s3">void </span><span class="s1">Stock::registrar_pedido_minorista(string nombre_cliente</span><span class="s3">, </span><span class="s1">string tipo_fruta</span><span class="s3">, int </span><span class="s1">cantidad_fruta)</span>
+<span class="s1">{</span>
+    <span class="s1">Cajon cajon(</span><span class="s2">&quot;&quot;</span><span class="s3">, </span><span class="s1">tipo_fruta</span><span class="s3">, </span><span class="s1">cantidad_fruta)</span><span class="s3">;</span>
+    <span class="s1">pedidos_minorista.push(make_pair(nombre_cliente</span><span class="s3">, </span><span class="s1">cajon))</span><span class="s3">;</span>
+<span class="s1">}</span>
+<span class="s3">void </span><span class="s1">Stock::imprimir_stock()</span>
+<span class="s1">{</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;Stock disponible en el dep sito:&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+    <span class="s3">for </span><span class="s1">(</span><span class="s3">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s3">; </span><span class="s1">i &lt; depo.size()</span><span class="s3">; </span><span class="s1">i++)</span>
+    <span class="s1">{</span>
+        <span class="s3">if </span><span class="s1">(depo[i].empty())</span>
+        <span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;No hay cajones de &quot; </span><span class="s1">&lt;&lt; i + </span><span class="s4">1 </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+        <span class="s1">}</span>
+        <span class="s3">else</span>
+        <span class="s1">{</span>
+            <span class="s3">int </span><span class="s1">total_cantidad = </span><span class="s4">0</span><span class="s3">;</span>
+            <span class="s1">stack&lt;Cajon&gt; temp</span><span class="s3">;</span>
+            <span class="s3">while </span><span class="s1">(!depo[i].empty())</span>
+            <span class="s1">{</span>
+                <span class="s1">total_cantidad += depo[i].top().get_cantidad_fruta()</span><span class="s3">;</span>
+                <span class="s1">temp.push(depo[i].top())</span><span class="s3">;</span>
+                <span class="s1">depo[i].pop()</span><span class="s3">;</span>
+            <span class="s1">}</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;Hay &quot; </span><span class="s1">&lt;&lt; total_cantidad &lt;&lt; </span><span class="s2">&quot; kg de &quot; </span><span class="s1">&lt;&lt; temp.top().get_tipo_fruta() &lt;&lt; </span><span class="s2">&quot; en &quot; </span><span class="s1">&lt;&lt; temp.size() &lt;&lt; </span><span class="s2">&quot; cajones:&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+            <span class="s3">while </span><span class="s1">(!temp.empty())</span>
+            <span class="s1">{</span>
+                <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;  - Caj n &quot; </span><span class="s1">&lt;&lt; temp.top().get_identificador() &lt;&lt; </span><span class="s2">&quot; con &quot; </span><span class="s1">&lt;&lt; temp.top().get_cantidad_fruta() &lt;&lt; </span><span class="s2">&quot; kg.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+                <span class="s1">depo[i].push(temp.top())</span><span class="s3">;</span>
+                <span class="s1">temp.pop()</span><span class="s3">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+<span class="s3">void </span><span class="s1">Stock::imprimir_pedidos()</span>
+<span class="s1">{</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;Pedidos registrados para el mayorista:&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+    <span class="s3">if </span><span class="s1">(pedidos_mayorista.empty())</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;No hay pedidos registrados para el mayorista.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+    <span class="s1">}</span>
+    <span class="s3">else</span>
+    <span class="s1">{</span>
+        <span class="s3">while </span><span class="s1">(!pedidos_mayorista.empty())</span>
+        <span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;- Cliente: &quot; </span><span class="s1">&lt;&lt; pedidos_mayorista.front().first &lt;&lt; </span><span class="s2">&quot;, tipo de fruta: &quot; </span><span class="s1">&lt;&lt; pedidos_mayorista.front().second.get_tipo_fruta() &lt;&lt; </span><span class="s2">&quot;, cantidad: &quot; </span><span class="s1">&lt;&lt; pedidos_mayorista.front().second.get_cantidad_fruta() &lt;&lt; endl</span><span class="s3">;</span>
+            <span class="s1">pedidos_mayorista.pop()</span><span class="s3">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+    <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;Pedidos registrados para el minorista:&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+    <span class="s3">if </span><span class="s1">(pedidos_minorista.empty())</span>
+    <span class="s1">{</span>
+        <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;No hay pedidos registrados para el minorista.&quot; </span><span class="s1">&lt;&lt; endl</span><span class="s3">;</span>
+    <span class="s1">}</span>
+    <span class="s3">else</span>
+    <span class="s1">{</span>
+        <span class="s3">while </span><span class="s1">(!pedidos_minorista.empty())</span>
+        <span class="s1">{</span>
+            <span class="s1">cout &lt;&lt; </span><span class="s2">&quot;- Cliente: &quot; </span><span class="s1">&lt;&lt; pedidos_minorista.front().first &lt;&lt; </span><span class="s2">&quot;, tipo de fruta: &quot; </span><span class="s1">&lt;&lt; pedidos_minorista.front().second.get_tipo_fruta() &lt;&lt; </span><span class="s2">&quot;, cantidad: &quot; </span><span class="s1">&lt;&lt; pedidos_minorista.front().second.get_cantidad_fruta() &lt;&lt; endl</span><span class="s3">;</span>
+            <span class="s1">pedidos_minorista.pop()</span><span class="s3">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

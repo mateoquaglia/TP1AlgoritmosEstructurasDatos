@@ -1,0 +1,39 @@
+<html>
+<head>
+<title>Cola.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bbb529;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Cola.h</font>
+</center></td></tr></table>
+<pre><span class="s0">#ifndef </span><span class="s1">COLA_H</span>
+<span class="s0">#define </span><span class="s1">COLA_H</span>
+
+<span class="s0">#include </span><span class="s2">&quot;Lista.h&quot;</span>
+
+<span class="s3">class </span><span class="s1">Cola {</span>
+<span class="s3">private</span><span class="s1">:</span>
+    <span class="s1">Lista* lista</span><span class="s3">;</span>
+
+<span class="s3">public</span><span class="s1">:</span>
+    <span class="s1">Cola()</span><span class="s3">;</span>
+    <span class="s1">~Cola()</span><span class="s3">;</span>
+    <span class="s3">void </span><span class="s1">encolar(string valor)</span><span class="s3">;</span>
+    <span class="s3">void </span><span class="s1">desencolar()</span><span class="s3">;</span>
+    <span class="s1">string frente()</span><span class="s3">;</span>
+    <span class="s3">bool </span><span class="s1">colaVacia()</span><span class="s3">;</span>
+<span class="s1">}</span><span class="s3">;</span>
+
+<span class="s0">#endif</span>
+</pre>
+</body>
+</html>

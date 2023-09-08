@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Pila.cpp</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bbb529;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Pila.cpp</font>
+</center></td></tr></table>
+<pre><span class="s0">#include </span><span class="s2">&quot;Pila.h&quot;</span>
+<span class="s0">#include</span><span class="s2">&lt;string&gt;</span>
+<span class="s0">#include</span><span class="s2">&lt;string.h&gt;</span>
+<span class="s0">#include</span><span class="s2">&lt;iostream&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;stdio.h&gt;</span>
+<span class="s0">#include </span><span class="s2">&lt;stdlib.h&gt;</span>
+<span class="s3">using namespace </span><span class="s1">std</span><span class="s3">;</span>
+<span class="s3">using </span><span class="s1">std::string</span><span class="s3">;</span>
+
+
+
+<span class="s1">Pila::Pila(Lista* lVariables)</span>
+<span class="s1">{</span>
+    <span class="s1">listaVariables=lVariables</span><span class="s3">;</span>
+    <span class="s1">cabeza=</span><span class="s2">&quot;&quot;</span><span class="s3">;</span>
+    <span class="s1">next=NULL</span><span class="s3">;</span>
+    <span class="s1">esBool_o_Entera=</span><span class="s3">false;</span>
+<span class="s1">}</span>
+<span class="s1">Pila::Pila()</span>
+<span class="s1">{</span>
+    <span class="s1">cabeza=</span><span class="s2">&quot;&quot;</span><span class="s3">;</span>
+    <span class="s1">next=NULL</span><span class="s3">;</span>
+    <span class="s1">esBool_o_Entera=</span><span class="s3">false;</span>
+    <span class="s1">listaVariables=NULL</span><span class="s3">;</span>
+
+<span class="s1">}</span><span class="s3">;</span>
+<span class="s3">void </span><span class="s1">Pila::apilar(string p)</span>
+<span class="s1">{</span>
+
+    <span class="s1">Pila *nuevoNext=</span><span class="s3">new </span><span class="s1">Pila()</span><span class="s3">;</span>
+
+    <span class="s1">nuevoNext-&gt;setCabeza(</span><span class="s3">this</span><span class="s1">-&gt;getCabeza())</span><span class="s3">;</span>
+
+    <span class="s1">nuevoNext-&gt;setNext(</span><span class="s3">this</span><span class="s1">-&gt;getNext())</span><span class="s3">;</span>
+
+    <span class="s3">this</span><span class="s1">-&gt;setCabeza(p)</span><span class="s3">;</span>
+
+    <span class="s3">this</span><span class="s1">-&gt;setNext(nuevoNext)</span><span class="s3">;</span>
+
+<span class="s1">}</span><span class="s3">;</span>
+<span class="s1">string Pila::tope()</span>
+<span class="s1">{</span>
+    <span class="s3">return this</span><span class="s1">-&gt;getCabeza()</span><span class="s3">;</span>
+<span class="s1">}</span><span class="s3">;</span>
+<span class="s3">void </span><span class="s1">Pila::desapilar(){</span>
+    <span class="s3">if</span><span class="s1">(!pilavacia()){</span>
+        <span class="s1">Pila *next=</span><span class="s3">this</span><span class="s1">-&gt;getNext()</span><span class="s3">;</span>
+        <span class="s3">if</span><span class="s1">(next!=NULL){</span>
+            <span class="s3">this</span><span class="s1">-&gt;setCabeza(next-&gt;getCabeza())</span><span class="s3">;</span>
+            <span class="s3">this</span><span class="s1">-&gt;setNext(next-&gt;getNext())</span><span class="s3">;</span>
+        <span class="s1">}</span><span class="s3">else</span><span class="s1">{</span>
+            <span class="s3">this</span><span class="s1">-&gt;setCabeza(</span><span class="s2">&quot;&quot;</span><span class="s1">)</span><span class="s3">;</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span><span class="s3">;</span>
+<span class="s3">bool </span><span class="s1">Pila::pilavacia()</span>
+<span class="s1">{</span>
+    <span class="s3">if</span><span class="s1">(cabeza==</span><span class="s2">&quot;&quot; </span><span class="s1">&amp;&amp; next==NULL)</span>
+    <span class="s1">{</span>
+        <span class="s3">return true;</span>
+    <span class="s1">}</span>
+    <span class="s3">return false;</span>
+<span class="s1">}</span>
+<span class="s3">void </span><span class="s1">Pila::setCabeza(string s)</span>
+<span class="s1">{</span>
+    <span class="s1">cabeza=s</span><span class="s3">;</span>
+<span class="s1">}</span>
+<span class="s1">string Pila::getCabeza()</span>
+<span class="s1">{</span>
+    <span class="s3">return </span><span class="s1">cabeza</span><span class="s3">;</span>
+<span class="s1">}</span>
+<span class="s3">void </span><span class="s1">Pila::setNext(Pila* n)</span>
+<span class="s1">{</span>
+    <span class="s1">next=n</span><span class="s3">;</span>
+<span class="s1">}</span>
+<span class="s1">Pila* Pila::getNext()</span>
+<span class="s1">{</span>
+    <span class="s3">return </span><span class="s1">next</span><span class="s3">;</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

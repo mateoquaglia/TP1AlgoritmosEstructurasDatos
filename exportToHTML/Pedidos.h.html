@@ -1,0 +1,53 @@
+<html>
+<head>
+<title>Pedidos.h</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #bbb529;}
+.s1 { color: #a9b7c6;}
+.s2 { color: #6a8759;}
+.s3 { color: #cc7832;}
+</style>
+</head>
+<body bgcolor="#2b2b2b">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Pedidos.h</font>
+</center></td></tr></table>
+<pre><span class="s0">#ifndef </span><span class="s1">PEDIDO_H</span>
+<span class="s0">#define </span><span class="s1">PEDIDO_H</span>
+<span class="s0">#include</span><span class="s2">&lt;string&gt;</span>
+<span class="s0">#include</span><span class="s2">&lt;iostream&gt;</span>
+<span class="s3">using namespace </span><span class="s1">std</span><span class="s3">;</span>
+
+<span class="s3">class </span><span class="s1">Pedido</span>
+<span class="s1">{</span>
+<span class="s3">public</span><span class="s1">:</span>
+    <span class="s1">Pedido(string cliente</span><span class="s3">, </span><span class="s1">Fruta* fruta</span><span class="s3">, int </span><span class="s1">cantidadPedida ){</span>
+        <span class="s1">cliente = cliente</span><span class="s3">;</span>
+        <span class="s1">frutaPedida = fruta-&gt;getNombre()</span><span class="s3">;</span>
+        <span class="s1">cantidad = cantidadPedida</span><span class="s3">;</span>
+        <span class="s1">determinarTipoPedido(*</span><span class="s3">this</span><span class="s1">)</span><span class="s3">;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">string getCliente()</span><span class="s3">;</span>
+    <span class="s1">string determinarTipoPedido(Pedido pedido)</span><span class="s3">;</span>
+    <span class="s1">string getFrutaPedida()</span><span class="s3">;</span>
+    <span class="s3">int </span><span class="s1">getPesoPedido()</span><span class="s3">;</span>
+    <span class="s3">bool </span><span class="s1">esMayorista()</span><span class="s3">;</span>
+    <span class="s3">bool </span><span class="s1">esMinorista()</span><span class="s3">;</span>
+    <span class="s3">void </span><span class="s1">addPedido(Pedido pedido)</span><span class="s3">;</span>
+
+<span class="s3">private</span><span class="s1">:</span>
+    <span class="s1">string cliente</span><span class="s3">;</span>
+    <span class="s1">string frutaPedida</span><span class="s3">;</span>
+    <span class="s3">int </span><span class="s1">cantidad</span><span class="s3">;</span>
+    <span class="s3">bool </span><span class="s1">mayorista = </span><span class="s3">false;</span>
+    <span class="s3">bool </span><span class="s1">minorista = </span><span class="s3">false;</span>
+
+
+<span class="s1">}</span><span class="s3">;</span>
+<span class="s0">#endif</span></pre>
+</body>
+</html>
